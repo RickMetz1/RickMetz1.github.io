@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lakeridge Baseball · Live Streaming Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2744;
+    --navy-mid: #243259;
+
+    --gold: #c9a227;
+    --gold-light: #f0c94a;
+    --gold-pale: rgba(201,162,39,0.10);
+    --gold-border: rgba(201,162,39,0.30);
+    --red: #b22222;
+    --red-pale: rgba(178,34,34,0.08);
+    --red-border: rgba(178,34,34,0.35);
+    --blue-pale: rgba(59,130,246,0.08);
+    --blue-border: rgba(59,130,246,0.35);
+    --bg: #f8f7f4;
+    --card: #ffffff;
+    --card2: #f3f2ef;
+    --border: #e2e0db;
+    --border2: #cccac4;
+    --text: #1c1a17;
+    --text2: #5a5650;
+    --text3: #8a8780;
+    --danger-bg: rgba(178,34,34,0.06);
+    --danger-text: #8b1a1a;
+    --info-bg: rgba(30,90,180,0.06);
+    --info-text: #1e3a8a;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* ── LAYOUT ─────────────────────────────────────── */
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* ── HEADER ─────────────────────────────────────── */
+  .guide-header {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 2rem 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .guide-header::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 6px;
+    background: linear-gradient(180deg, var(--gold) 0%, #a07a10 100%);
+  }
+  .guide-header::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 6px; bottom: 0;
+    background: radial-gradient(ellipse at 90% 10%, rgba(201,162,39,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .header-inner { position: relative; z-index: 1; }
+  .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.05;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .header-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.58);
+    margin-bottom: 18px;
+  }
+  .header-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    background: rgba(201,162,39,0.15);
+    border: 0.5px solid rgba(201,162,39,0.35);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 11px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── GEAR CHECKLIST ──────────────────────────────── */
+  .checklist-bar {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .bar-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text2);
+    margin-bottom: 12px;
+  }
+  .gear-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 20px;
+  }
+  .gi {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .gi-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── STEP CARDS ──────────────────────────────────── */
+  .step-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 1rem 1.5rem;
+    background: var(--card2);
+    border-bottom: 1px solid var(--border);
+  }
+  .step-num {
+    width: 38px; height: 38px;
+    background: var(--navy);
+    color: var(--gold);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-title-block { flex: 1; }
+  .step-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.15;
+  }
+  .step-sub { font-size: 12px; color: var(--text2); }
+  .step-dur {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    background: var(--gold-pale);
+    border: 0.5px solid var(--gold-border);
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .step-body { padding: 1.5rem; }
+
+  /* ── EQUIPMENT CARD ──────────────────────────────── */
+  .equip-card {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin: 0 0 1.25rem;
+  }
+  .equip-icon {
+    width: 54px; height: 54px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 26px;
+  }
+  .equip-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .equip-desc { font-size: 12px; color: var(--text2); margin-bottom: 6px; }
+  .equip-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .etag {
+    font-size: 11px;
+    color: var(--text2);
+    background: var(--card);
+    border: 0.5px solid var(--border2);
+    border-radius: 4px;
+    padding: 2px 7px;
+  }
+
+  /* ── PHOTO PLACEHOLDER ───────────────────────────── */
+  .ph {
+    background: var(--card2);
+    border: 1.5px dashed var(--border2);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+    text-align: center;
+    margin: 1.1rem 0;
+    color: var(--text3);
+  }
+  .ph-icon { font-size: 28px; margin-bottom: 6px; opacity: 0.45; }
+  .ph strong { display: block; font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 3px; }
+  .ph span { font-size: 12px; }
+  .ph-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.1rem 0; }
+
+  /* ── INSTRUCTION LIST ────────────────────────────── */
+  .instr { list-style: none; counter-reset: instr; }
+  .instr li {
+    counter-increment: instr;
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    align-items: flex-start;
+    line-height: 1.55;
+  }
+  .instr li:last-child { border-bottom: none; }
+  .instr li::before {
+    content: counter(instr);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold);
+    background: var(--gold-pale);
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── CALLOUTS ────────────────────────────────────── */
+  .tip {
+    background: var(--gold-pale);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 10px 14px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .tip strong { color: #8a6510; }
+  .warn {
+    background: var(--danger-bg);
+    border-left: 3px solid var(--red);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 10px 14px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: var(--danger-text);
+  }
+  .warn strong { font-weight: 700; }
+  .info {
+    background: var(--info-bg);
+    border-left: 3px solid #3b82f6;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 10px 14px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: var(--info-text);
+  }
+
+  /* ── FIELD DIAGRAM ───────────────────────────────── */
+  .field-wrap {
+    margin: 1.25rem 0;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .field-wrap svg { display: block; width: 100%; }
+
+  /* ── DIVIDER ─────────────────────────────────────── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 1.25rem 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── LIVE BADGE ──────────────────────────────────── */
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--red);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.07em;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .live-dot {
+    width: 7px; height: 7px;
+    background: #fff;
+    border-radius: 50%;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* ── GC FLOW ─────────────────────────────────────── */
+  .gc-flow {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 10px;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+  .gc-step { flex: 1; min-width: 120px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+  .gc-screen {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 8px;
+    width: 100%;
+    min-height: 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 8px;
+  }
+  .gc-arrow {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 6px;
+    color: var(--text3);
+    font-size: 20px;
+    padding-top: 36px;
+    flex-shrink: 0;
+  }
+  .gc-label { font-size: 11px; color: var(--text2); font-weight: 500; line-height: 1.4; padding: 0 4px; }
+  .gc-btn {
+    background: var(--navy);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 5px;
+    display: inline-block;
+    letter-spacing: 0.03em;
+  }
+  .gc-btn-red { background: var(--red); }
+  .gc-tag {
+    font-size: 9px;
+    color: var(--text2);
+    border: 0.5px solid var(--border2);
+    border-radius: 3px;
+    padding: 2px 5px;
+  }
+  .gc-tag-gold {
+    background: var(--gold-pale);
+    border-color: var(--gold-border);
+    color: #8a6510;
+  }
+
+  /* ── TROUBLESHOOTING ─────────────────────────────── */
+  .ts-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .ts-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ts-title-icon { color: var(--gold); font-size: 18px; }
+  .ts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ts-item {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 11px 13px;
+  }
+  .ts-problem { font-size: 12px; font-weight: 700; color: var(--red); margin-bottom: 5px; }
+  .ts-fix { font-size: 12px; color: var(--text); line-height: 1.45; }
+
+  /* ── PACK DOWN ───────────────────────────────────── */
+  .packdown {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .packdown-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .packdown-sub { font-size: 12px; color: var(--text2); margin-bottom: 14px; }
+  .packdown-list { list-style: none; }
+  .packdown-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text);
+  }
+  .packdown-list li:last-child { border-bottom: none; }
+  .packdown-icon { color: var(--gold); font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  .guide-footer {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.5rem;
+    font-size: 12px;
+    color: var(--text2);
+    text-align: center;
+    line-height: 1.8;
+  }
+  .guide-footer strong { color: var(--text); }
+  .guide-footer a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--border2); }
+  .guide-footer a:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* ── PRINT ───────────────────────────────────────── */
+  @media print {
+    body { background: white; font-size: 13px; }
+    .page { padding: 1rem; max-width: 100%; }
+    .step-card, .ts-section, .packdown, .checklist-bar, .guide-footer { break-inside: avoid; }
+    .guide-header { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .live-dot { animation: none; }
+  }
+
+  /* ── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 560px) {
+    .page { padding: 1rem 1rem 3rem; }
+    .guide-header { padding: 1.5rem; }
+    .header-title { font-size: 28px; }
+    .gear-grid, .ts-grid, .ph-row { grid-template-columns: 1fr; }
+    .gc-flow { flex-direction: column; }
+    .gc-arrow { padding-top: 0; transform: rotate(90deg); }
+    .step-body { padding: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HEADER ── -->
+  <div class="guide-header">
+    <div class="header-inner">
+      <div class="eyebrow">Quick Start Guide</div>
+      <div class="header-title">Lakeridge Baseball<br>Live Streaming Setup</div>
+      <div class="header-sub">Follow all five steps in order every game day. Estimated setup time: 20–30 minutes.</div>
+      <div class="header-badges">
+        <span class="badge">Step 1 · Starlink Mini</span>
+        <span class="badge">Step 2 · Slate 7 Router</span>
+        <span class="badge">Step 3 · Mevo Start Cameras</span>
+        <span class="badge">Step 4 · Pre-game Check</span>
+        <span class="badge">Step 5 · GameChanger</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GEAR CHECKLIST ── -->
+  <div class="checklist-bar">
+    <div class="bar-title">✓ Before you leave — confirm you have everything</div>
+    <div class="gear-grid">
+      <div class="gi"><span class="gi-dot"></span> Starlink Mini dish</div>
+      <div class="gi"><span class="gi-dot"></span> Starlink power cable + ethernet cable</div>
+      <div class="gi"><span class="gi-dot"></span> Tripod or table mount for Starlink</div>
+      <div class="gi"><span class="gi-dot"></span> Slate 7 router + power cable</div>
+      <div class="gi"><span class="gi-dot"></span> 3× Mevo Start cameras (check labels)</div>
+      <div class="gi"><span class="gi-dot"></span> 3× Camera mounts (labels must match cameras)</div>
+      <div class="gi"><span class="gi-dot"></span> 3× USB-C power cables for cameras</div>
+      <div class="gi"><span class="gi-dot"></span> iPad — fully charged</div>
+      <div class="gi"><span class="gi-dot"></span> iPad charger cable</div>
+      <div class="gi"><span class="gi-dot"></span> Extension cords + power strip</div>
+    </div>
+  </div>
+
+  <!-- ── STEP 1 ── -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <div class="step-title-block">
+        <div class="step-title">Set up the Starlink Mini (Internet Access)</div>
+        <div class="step-sub">The source of internet for the entire system and stream — do this first</div>
+      </div>
+      <div class="step-dur">~8 min</div>
+    </div>
+    <div class="step-body">
+
+      <div class="equip-card">
+        <div class="equip-icon">📡</div>
+        <div>
+          <div class="equip-name">Starlink Mini</div>
+          <div class="equip-desc">Compact satellite dish — roughly the size of a laptop.</div>
+          <div class="equip-tags">
+            <span class="etag">Plug into wall or power bank</span>
+            <span class="etag">Connects ethernet cable</span>
+            <span class="etag">Align dish via Starlink app</span>
+            <span class="etag">5-10 min to connect</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ph">
+        <img src="Starlink_Mini_Mount_and_Wires.png" width="620" height="400" alt="Starlink Mini & cables">
+      </div>
+
+      <ul class="instr">
+        <li>Retrieve the Starlink Mini dish, its power cable, and the Ethernet cable from the bag.</li>
+        <li>Assemble your preferred mount — use the tripod or table mount. Attach the dish to the mount.</li>
+        <li>Connect the power cable to the Starlink dish, then plug the ethernet cable. The dish will start powering up immediately.</li>
+        <li>Place the dish somewhere with a wide, clear view of the sky — well away from the press box roof, backstop netting, or any trees.</li>
+        <li>Open the Starlink app on the iPad and tap "Alignment" to have the app guide you on direction and dish angle for best service.</li>
+        <li>Wait for the status to read "Connected" — usually 5–10 minutes. Once connected, move to Step 2.</li>
+      </ul>
+
+      <div class="info">The Starlink Mini provides enough internet bandwidth for a clean 1080p stream. Once the app shows "Connected," you're good to go.</div>
+
+    </div>
+  </div>
+
+  <!-- ── STEP 2 ── -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <div class="step-title-block">
+        <div class="step-title">Set up the Slate 7 Router (Wi-Fi)</div>
+        <div class="step-sub">Creates the private Wi-Fi network used by all cameras and the iPad</div>
+      </div>
+      <div class="step-dur">~5 min</div>
+    </div>
+    <div class="step-body">
+
+      <div class="equip-card">
+        <div class="equip-icon">📶</div>
+        <div>
+          <div class="equip-name">Slate 7 Router (GL-BE3600)</div>
+          <div class="equip-desc">Portable travel router — roughly the size of a deck of cards.</div>
+          <div class="equip-tags">
+            <span class="etag">WAN port = internet in</span>
+            <span class="etag">Wi-Fi 7</span>
+            <span class="etag">Broadcasts its own network</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ph">
+        <img src="Slate_7.png" width="640" height="400" alt="Slate 7 & cables">
+      </div>
+
+      <ul class="instr">
+        <li>Take the Ethernet cable coming out of the Starlink Mini and plug it into the WAN port on the Slate 7. This is the blue port in the middle of the Slate 7.</li>
+        <li>Plug the router's power cable into your power source. The indicator lights will come on within a few seconds.</li>
+        <li>Place the router in a completely open, unobstructed location — on top of a dugout roof, on a bench in the open, or on a table near home plate.</li>
+        <li>Position it as centrally as possible between all three planned camera locations — the closer and more central it is, the stronger the Wi-Fi signal to each camera.</li>
+        <li>Give it 60 seconds to fully boot. The lights will settle when it's ready.</li>
+      </ul>
+
+      <div class="warn"><strong>Never put the router in a bag or behind a wall.</strong> Obstructing it kills the Wi-Fi signal and will cause dropped frames, choppy video, or cameras disconnecting mid-game.</div>
+      <div class="tip"><strong>Think of it like a walkie-talkie:</strong> the more open air between the router and cameras, the stronger the connection. Pick the most central, exposed spot you can find.</div>
+
+    </div>
+  </div>
+
+  <!-- ── STEP 3 ── -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <div class="step-title-block">
+        <div class="step-title">Set up the 3 Mevo Start cameras</div>
+        <div class="step-sub">Mount, power, and verify each camera in Mevo Studio</div>
+      </div>
+      <div class="step-dur">~15 min</div>
+    </div>
+    <div class="step-body">
+
+      <div class="equip-card">
+        <div class="equip-icon">🎥</div>
+        <div>
+          <div class="equip-name">Mevo Start ×3 + fence/magnetic mounts</div>
+          <div class="equip-desc">1080p wireless streaming cameras — each physically labeled for its position.</div>
+          <div class="equip-tags">
+            <span class="etag">Battery can cover 1+ game</span>
+            <span class="etag">Auto-connects to Wi-Fi</span>
+            <span class="etag">Controlled via Mevo Studio</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="warn"><strong>⚡ Always plug cameras into USB-C power for more than 1 game.</strong> Mevo Start batteries last approximately 1+ game — but may not be enough for a 2+ full games. When the battery dies the camera will shut off immediately.</div>
+
+      <!-- ── FIELD DIAGRAM ── -->
+  <div class="field-wrap">
+  <svg viewBox="0 0 720 460"
+       xmlns="http://www.w3.org/2000/svg"
+       role="img"
+       aria-label="Baseball field camera positions overhead view">
+
+    <title>Baseball field — camera positions overhead view</title>
+
+    <!-- Background -->
+    <rect width="720" height="460" fill="#e8f5e9"/>
+
+    <!-- Outfield fan -->
+    <path d="
+      M120 90
+      Q70 150 60 235
+      Q80 340 170 390
+      Q270 440 360 450
+      Q450 440 550 390
+      Q640 340 660 235
+      Q650 150 600 90
+      L360 360
+      Z"
+      fill="#4a9a5a"
+      opacity="0.18"/>
+
+    <!-- Foul lines -->
+    <line x1="360" y1="360"
+          x2="120" y2="90"
+          stroke="#ffffff"
+          stroke-width="3"
+          opacity="0.7"/>
+
+    <line x1="360" y1="360"
+          x2="600" y2="90"
+          stroke="#ffffff"
+          stroke-width="3"
+          opacity="0.7"/>
+
+    <!-- Infield dirt -->
+    <polygon points="
+        360,360
+        240,240
+        360,120
+        480,240"
+        fill="#d4a96a"
+        opacity="0.38"/>
+
+    <!-- Base paths -->
+    <polygon points="
+        360,360
+        240,240
+        360,120
+        480,240"
+        fill="none"
+        stroke="#c89b52"
+        stroke-width="5"
+        stroke-linejoin="round"/>
+
+    <!-- Pitcher's mound -->
+    <circle cx="360"
+            cy="280"
+            r="16"
+            fill="#c89b52"
+            opacity="0.55"/>
+
+    <text x="360"
+          y="286"
+          text-anchor="middle"
+          font-family="Barlow,sans-serif"
+          font-size="12"
+          font-weight="700"
+          fill="#7a5a20">P</text>
+
+    <!-- Home Plate -->
+    <polygon points="
+        360,380
+        346,364
+        352,350
+        368,350
+        374,364"
+        fill="#ffffff"
+        stroke="#9ca3af"
+        stroke-width="1.5"/>
+
+    <text x="360"
+          y="366"
+          text-anchor="middle"
+          font-family="Barlow Condensed,sans-serif"
+          font-size="10"
+          font-weight="700"
+          fill="#333">H</text>
+
+    <!-- Third Base -->
+    <rect x="228"
+          y="228"
+          width="24"
+          height="24"
+          rx="3"
+          fill="#ffffff"
+          stroke="#9ca3af"
+          stroke-width="1.5"
+          transform="rotate(45 240 240)"/>
+
+    <text x="240"
+          y="245"
+          text-anchor="middle"
+          font-family="Barlow Condensed,sans-serif"
+          font-size="11"
+          font-weight="700"
+          fill="#333">3</text>
+
+    <!-- Second Base -->
+    <rect x="348"
+          y="108"
+          width="24"
+          height="24"
+          rx="3"
+          fill="#ffffff"
+          stroke="#9ca3af"
+          stroke-width="1.5"
+          transform="rotate(45 360 120)"/>
+
+    <text x="360"
+          y="125"
+          text-anchor="middle"
+          font-family="Barlow Condensed,sans-serif"
+          font-size="11"
+          font-weight="700"
+          fill="#333">2</text>
+
+    <!-- First Base -->
+    <rect x="468"
+          y="228"
+          width="24"
+          height="24"
+          rx="3"
+          fill="#ffffff"
+          stroke="#9ca3af"
+          stroke-width="1.5"
+          transform="rotate(45 480 240)"/>
+
+    <text x="480"
+          y="245"
+          text-anchor="middle"
+          font-family="Barlow Condensed,sans-serif"
+          font-size="11"
+          font-weight="700"
+          fill="#333">1</text>
+
+    <!-- Camera 1 -->
+    <circle cx="360"
+            cy="430"
+            r="18"
+            fill="#172554"
+            stroke="#d4a514"
+            stroke-width="3"/>
+
+    <text x="360"
+          y="425"
+          text-anchor="middle"
+          font-family="Barlow Condensed,sans-serif"
+          font-size="8"
+          font-weight="700"
+          fill="#d4a514">CAM</text>
+
+    <text x="360"
+          y="436"
+          text-anchor="middle"
+          font-family="Barlow Condensed,sans-serif"
+          font-size="8"
+          font-weight="700"
+          fill="#d4a514">1</text>
+
+    <!-- Camera 2 -->
+    <circle cx="630"
+            cy="260"
+            r="18"
+            fill="#172554"
+            stroke="#d4a514"
+            stroke-width="3"/>
+
+    <text x="630"
+          y="255"
+          text-anchor="middle"
+          font-family="Barlow Condensed,sans-serif"
+          font-size="8"
+          font-weight="700"
+          fill="#d4a514">CAM</text>
+
+    <text x="630"
+          y="266"
+          text-anchor="middle"
+          font-family="Barlow Condensed,sans-serif"
+          font-size="8"
+          font-weight="700"
+          fill="#d4a514">2</text>
+
+    <!-- Camera 3 -->
+    <circle cx="90"
+            cy="260"
+            r="18"
+            fill="#172554"
+            stroke="#d4a514"
+            stroke-width="3"/>
+
+    <text x="90"
+          y="255"
+          text-anchor="middle"
+          font-family="Barlow Condensed,sans-serif"
+          font-size="8"
+          font-weight="700"
+          fill="#d4a514">CAM</text>
+
+    <text x="90"
+          y="266"
+          text-anchor="middle"
+          font-family="Barlow Condensed,sans-serif"
+          font-size="8"
+          font-weight="700"
+          fill="#d4a514">3</text>
+
+    <!-- Coverage Lines -->
+    <path d="M360 430 Q300 330 240 240"
+          fill="none"
+          stroke="#d4a514"
+          stroke-width="2"
+          stroke-dasharray="6,5"
+          opacity="0.55"/>
+
+    <path d="M360 430 Q420 330 480 240"
+          fill="none"
+          stroke="#d4a514"
+          stroke-width="2"
+          stroke-dasharray="6,5"
+          opacity="0.55"/>
+
+    <path d="M630 260 Q510 180 360 120"
+          fill="none"
+          stroke="#d4a514"
+          stroke-width="2"
+          stroke-dasharray="6,5"
+          opacity="0.55"/>
+
+    <path d="M90 260 Q210 180 360 120"
+          fill="none"
+          stroke="#d4a514"
+          stroke-width="2"
+          stroke-dasharray="6,5"
+          opacity="0.55"/>
+
+    <!-- Labels -->
+    <rect x="275"
+          y="442"
+          width="170"
+          height="20"
+          rx="4"
+          fill="#1f2937"
+          opacity="0.92"/>
+
+    <text x="360"
+          y="456"
+          text-anchor="middle"
+          font-family="Barlow Condensed,sans-serif"
+          font-size="12"
+          font-weight="700"
+          fill="#d4a514">
+      Cam 1 · Home Plate
+    </text>
+
+    <rect x="470"
+          y="278"
+          width="150"
+          height="20"
+          rx="4"
+          fill="#1f2937"
+          opacity="0.92"/>
+
+    <text x="545"
+          y="292"
+          text-anchor="middle"
+          font-family="Barlow Condensed,sans-serif"
+          font-size="12"
+          font-weight="700"
+          fill="#d4a514">
+      Cam 2 · 1st Base Side
+    </text>
+
+    <rect x="100"
+          y="278"
+          width="150"
+          height="20"
+          rx="4"
+          fill="#1f2937"
+          opacity="0.92"/>
+
+    <text x="175"
+          y="292"
+          text-anchor="middle"
+          font-family="Barlow Condensed,sans-serif"
+          font-size="12"
+          font-weight="700"
+          fill="#d4a514">
+      Cam 3 · 3rd Base Side
+    </text>
+
+    <!-- Title -->
+    <text x="360"
+          y="35"
+          text-anchor="middle"
+          font-family="Barlow Condensed,sans-serif"
+          font-size="15"
+          font-weight="700"
+          fill="#4b5563"
+          letter-spacing="1px">
+      CAMERA POSITIONS · OVERHEAD VIEW
+    </text>
+
+  </svg>
+  </div>
+
+      <div class="tip"><strong>Setup order matters:</strong> Always start with Camera 1 (home plate), then Camera 2 (1st base side), then Camera 3 (3rd base side). The label on each camera and mount tells you where it goes.</div>
+
+      <div class="divider">Camera setup steps — repeat for each camera</div>
+
+      <ul class="instr">
+        <li>Unpack and assemble the mount for Camera 1 (Home Plate). Extend the mounting arm and tighten all knobs until firm. Position it at the backstop fence behind home plate. Higher is better — ideal is 10–12 feet off the ground for the clearest view over.</li>
+        <li>Before placing it in the mount, power on Camera 1 by pressing and holding the power button until the LED comes on and blinks. There is also a audible beep</li>
+        <li>Click the camera into the mount and secure it to the fence, roof or railing. Aim it roughly toward home plate facing the infield — you will fine-tune the angle next.</li>
+        <li>Open Mevo Studio on the iPad. Within 30–60 seconds the camera will appear automatically with a live preview. No pairing or passwords are needed.</li>
+        <li>Check the preview on the iPad. Adjust the camera angle by hand until home plate and the batter's box are clearly centered in the frame. Check the iPad after each adjustment.</li>
+        <li>Repeat steps 1–5 for Camera 2 (1st base side): position along the 1st base fence, aim to capture 1st base, the infield, and as much of right field as possible.</li>
+        <li>Repeat for Camera 3 (3rd base side): position along the 3rd base fence, aim to capture 3rd base, the infield, and as much of left field as possible.</li>
+        <li>Once all 3 cameras appear in Mevo Studio and you are satisfied with all three views, camera setup is complete.</li>
+      </ul>
+
+      <div class="ph-row">
+        <div class="ph">
+            <img src="Home_Mount.png" width="300" height="400">
+        </div>
+        <div class="ph">
+            <img src="3rd_Mount.png" width="300" height="400">
+        </div>
+      </div>
+
+      <div class="warn"><strong>Camera not appearing in Mevo Studio?</strong> First confirm the iPad is connected to the Slate 7's Wi-Fi network — not your school Wi-Fi or phone hotspot. If it is, power the camera off, wait 15 seconds, power it back on, and wait 60 seconds.</div>
+
+    </div>
+  </div>
+
+  <!-- ── STEP 4 ── -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">4</div>
+      <div class="step-title-block">
+        <div class="step-title">Pre-game check and standby</div>
+        <div class="step-sub">Final checks before going live — don't skip this</div>
+      </div>
+      <div class="step-dur">Hold</div>
+    </div>
+    <div class="step-body">
+      <ul class="instr">
+        <li>In Mevo Studio, review all 3 camera feeds one more time. Check angles, check that the action area is in frame, and make sure all cables are tidy and secure.</li>
+        <li>Verify the iPad shows it is connected to the Slate 7's Wi-Fi network — not school Wi-Fi or a hotspot. Check in iPad Settings → Wi-Fi if you're unsure.</li>
+        <li>Confirm the Starlink app still shows "Connected" and the router's indicator lights are still on.</li>
+        <li>Check the iPad battery level. Plug it in if it's below 80% — you need it for the entire game.</li>
+        <li>Keep the iPad in the Mevo Studio app during the game. Do not let leave the screen as it will kill the Live feed.</li>
+      </ul>
+      <div class="tip">When to start the stream: Begin when the coaches walk out to meet the umpires at home plate — or about 60 seconds before that. This gives viewers a natural, broadcast-style opening to the game.</div>
+    </div>
+  </div>
+
+  <!-- ── STEP 5 ── -->
+  <div class="step-card">
+    <div class="step-header">
+      <div class="step-num">5</div>
+      <div class="step-title-block">
+        <div class="step-title">Go live via GameChanger</div>
+        <div class="step-sub">Start the stream at game time — follow the exact steps below</div>
+      </div>
+      <div class="step-dur">~2 min</div>
+    </div>
+    <div class="step-body">
+
+      <div class="live-badge"><span class="live-dot"></span> Live stream</div>
+
+      <div class="gc-flow">
+        <div class="gc-step">
+          <div class="gc-screen">
+            <span style="font-size:20px">⚾</span>
+            <div style="font-size:9px;font-weight:600;color:#333;text-align:center;">Today's game</div>
+            <span class="gc-btn">Record video</span>
+          </div>
+          <div class="gc-label">1 · Open game in GameChanger,<br>tap "Record video"</div>
+        </div>
+        <div class="gc-arrow">›</div>
+        <div class="gc-step">
+          <div class="gc-screen">
+            <div style="font-size:9px;font-weight:600;color:#333;margin-bottom:5px;">Select camera</div>
+            <span class="gc-tag" style="margin-bottom:3px;">Built-in camera</span>
+            <span class="gc-tag gc-tag-gold">External camera ✓</span>
+          </div>
+          <div class="gc-label">2 · Select<br>"External camera"</div>
+        </div>
+        <div class="gc-arrow">›</div>
+        <div class="gc-step">
+          <div class="gc-screen">
+            <div style="font-size:9px;font-weight:600;color:#333;margin-bottom:5px;">Camera source</div>
+            <span class="gc-tag gc-tag-gold">Mevo Multicam ✓</span>
+            <div style="font-size:8px;color:#888;margin-top:5px;">Opens Mevo Studio</div>
+          </div>
+          <div class="gc-label">3 · Choose "Mevo Multicam"<br>— Mevo Studio opens</div>
+        </div>
+        <div class="gc-arrow">›</div>
+        <div class="gc-step">
+          <div class="gc-screen">
+            <span style="font-size:20px;color:#b22222;">▶</span>
+            <span class="gc-btn gc-btn-red">Go Live</span>
+            <div style="font-size:8px;color:#888;margin-top:3px;">Wait ~60 sec first</div>
+          </div>
+          <div class="gc-label">4 · Wait ~60 sec,<br>then tap "Go Live"</div>
+        </div>
+      </div>
+
+      <ul class="instr">
+        <li>Open the GameChanger app on the iPad and tap today's game.</li>
+        <li>Tap the Record Video button (camera icon).</li>
+        <li>When prompted, select "External Camera."</li>
+        <li>Choose "Mevo Multicam." GameChanger will prompt you through a brief setup screen and then automatically open Mevo Studio.</li>
+        <li>Wait about 60 seconds</strong> inside Mevo Studio. Check that settings are 1080p @ 6Mbps. The "Go Live" button will highlight and become tappable when it's ready.</li>
+        <li>Tap "Go Live." You're streaming.</li>
+      </ul>
+
+      <div class="ph">
+      <img src="GC_Screenshot.png" width="620" height="400">
+      </div>
+
+      <div class="warn"><strong>Do not leave the Mevo Studio app while streaming.</strong> Switching to another app, pressing the Home button, or letting the iPad screen lock will immediately cut the live stream for all viewers. Keep the screen on and stay in Mevo Studio for the entire game.</div>
+      <div class="tip"><strong>"Go Live" button stays grayed out after 90 seconds?</strong> Return to Mevo Studio and confirm all 3 cameras are showing and active. Then go back to GameChanger and restart from Step 2 (Record Video → External Camera → Mevo Multicam).</div>
+
+    </div>
+  </div>
+
+  <!-- ── PACK DOWN ── -->
+  <div class="packdown">
+    <div class="packdown-title">🎒 After the game — pack down</div>
+    <div class="packdown-sub">Reverse the setup in order. Do a full walkthrough before you leave the field.</div>
+    <ul class="packdown-list">
+      <li><span class="packdown-icon">⏹</span> In Mevo Studio, tap Live button to stop the stream. If you were recording locally to the iPad, also tap the Rec button to stop that recording.</li>
+      <li><span class="packdown-icon">🔌</span> Unplug any attached USB-C power cables from each camera before removing them from the mounts.</li>
+      <li><span class="packdown-icon">📷</span> Power off each camera by holding the power button until the LED goes dark. Remove cameras from mounts carefully.</li>
+      <li><span class="packdown-icon">🔧</span> Disassemble each mount — collapse all legs and arms, coil straps, and bundle all parts together.</li>
+      <li><span class="packdown-icon">📶</span> Unplug the Slate 7 router. Coil the power and Ethernet cables neatly and pack the router away.</li>
+      <li><span class="packdown-icon">📡</span> Unplug the Starlink Mini. Disconnect both cables, and pack it carefully into its carry case.</li>
+      <li><span class="packdown-icon">📍</span> Walk the full perimeter — check the backstop area, both dugouts, and wherever the power strip was located. Collect any cables, mounts, or gear left behind.</li>
+    </ul>
+  </div>
+
+  <!-- ── TROUBLESHOOTING ── -->
+  <div class="ts-section">
+    <div class="ts-title">
+      <span class="ts-title-icon">⚠</span>
+      Troubleshooting — what to do when something goes wrong
+    </div>
+    <div class="ts-grid">
+      <div class="ts-item">
+        <div class="ts-problem">Camera not showing in Mevo Studio</div>
+        <div class="ts-fix">Confirm iPad is on the Slate 7's Wi-Fi (not school network or hotspot). Power the camera off, wait 15 sec, power back on. Wait 60 sec.</div>
+      </div>
+      <div class="ts-item">
+        <div class="ts-problem">Starlink won't connect</div>
+        <div class="ts-fix">Move the dish to a more open area — away from roof overhangs, netting, or trees. Wait 3 full minutes before assuming it won't work.</div>
+      </div>
+      <div class="ts-item">
+        <div class="ts-problem">"Go Live" button stays grayed out</div>
+        <div class="ts-fix">Return to Mevo Studio. Confirm all 3 cameras are live and showing. Go back to GameChanger → Record Video → External Camera → Mevo Multicam.</div>
+      </div>
+      <div class="ts-item">
+        <div class="ts-problem">Stream is choppy or dropping</div>
+        <div class="ts-fix">Check the router is still in the open and powered on. Check Starlink still shows "Connected." Try moving the router closer to the cameras.</div>
+      </div>
+      <div class="ts-item">
+        <div class="ts-problem">Camera shut off mid-game</div>
+        <div class="ts-fix">The USB-C power cable came unplugged. Re-connect it — the camera will restart and should re-appear in Mevo Studio within 60 seconds.</div>
+      </div>
+      <div class="ts-item">
+        <div class="ts-problem">Stream cut out mid-game</div>
+        <div class="ts-fix">The iPad likely left Mevo Studio. Return to the app, then restart the stream: GameChanger → Record Video → External Camera → Mevo Multicam → Go Live.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="guide-footer">
+    <strong>Lakeridge High School Baseball · Live Streaming Guide</strong><br>
+    Mevo support: <a href="https://mevo.com/support" target="_blank">mevo.com/support</a>
+    &nbsp;·&nbsp;
+    GameChanger help: <a href="https://gc.com/help" target="_blank">gc.com/help</a>
+    &nbsp;·&nbsp;
+    Starlink: <a href="https://starlink.com" target="_blank">starlink.com</a>
+    &nbsp;·&nbsp;
+    Slate 7: <a href="https://gl-inet.com" target="_blank">gl-inet.com</a>
+  </div>
+
+</div>
+</body>
+</html>

@@ -257,7 +257,20 @@
   .ph-icon { font-size: 28px; margin-bottom: 6px; opacity: 0.45; }
   .ph strong { display: block; font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 3px; }
   .ph span { font-size: 12px; }
-  .ph-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.1rem 0; }
+  .ph-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 1.1rem 0;
+}
+
+.mount-photo {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
 
   /* ── INSTRUCTION LIST ────────────────────────────── */
   .instr { list-style: none; counter-reset: instr; }
@@ -371,40 +384,43 @@
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
   /* ── GC FLOW ─────────────────────────────────────── */
-  .gc-flow {
-    display: flex;
-    gap: 0;
-    align-items: stretch;
-    background: var(--card2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 14px 10px;
-    margin: 1rem 0;
-    overflow-x: auto;
-  }
-  .gc-step { flex: 1; min-width: 120px; text-align: center; display: flex; flex-direction: column; align-items: center; }
-  .gc-screen {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 10px 8px;
-    width: 100%;
-    min-height: 96px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    margin-bottom: 8px;
-  }
-  .gc-arrow {
-    display: flex; align-items: center; justify-content: center;
-    padding: 0 6px;
-    color: var(--text3);
-    font-size: 20px;
-    padding-top: 36px;
-    flex-shrink: 0;
-  }
+.gc-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: 12px;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  margin: 1rem 0;
+}
+
+.gc-step {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gc-screen {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 8px;
+  width: 100%;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+/* arrows stay for desktop layout (optional visual only) */
+.gc-arrow {
+  display: none;
+}
   .gc-label { font-size: 11px; color: var(--text2); font-weight: 500; line-height: 1.4; padding: 0 4px; }
   .gc-btn {
     background: var(--navy);
@@ -587,7 +603,7 @@
       </div>
 
       <div class="ph">
-        <img src="Starlink_Mini_Mount_and_Wires.jpg" width="620" height="400" alt="Starlink Mini & cables">
+        <img src="Starlink_Mini_Mount_and_Wires.jpg" style="max-width:100%; height:auto;">
       </div>
 
       <ul class="instr">
@@ -630,7 +646,7 @@
       </div>
 
       <div class="ph">
-        <img src="Slate_7.png" width="640" height="400" alt="Slate 7 & cables">
+        <img src="Slate_7.png" style="max-width:100%; height:auto;">
       </div>
 
       <ul class="instr">
@@ -1011,13 +1027,13 @@
       </ul>
 
       <div class="ph-row">
-        <div class="ph">
-            <img src="Home_Mount.png" width="300" height="400">
-        </div>
-        <div class="ph">
-            <img src="3rd_Mount.png" width="300" height="400">
-        </div>
-      </div>
+  <div class="ph">
+    <img src="Home_Mount.png" alt="Home Mount" class="mount-photo">
+  </div>
+  <div class="ph">
+    <img src="3rd_Mount.png" alt="3rd Mount" class="mount-photo">
+  </div>
+</div>
 
       <div class="warn"><strong>Camera not appearing in Mevo Studio?</strong> First confirm the iPad is connected to the Slate 7's Wi-Fi network — not your school Wi-Fi or phone hotspot. If it is, power the camera off, wait 15 seconds, power it back on, and wait 60 seconds.</div>
 
@@ -1108,7 +1124,7 @@
       </ul>
 
       <div class="ph">
-      <img src="GC_Screenshot.png" width="620" height="400">
+      <img src="GC_Screenshot.png" style="max-width:100%; height:auto;">
       </div>
 
       <div class="warn"><strong>Do not leave the Mevo Studio app while streaming.</strong> Switching to another app, pressing the Home button, or letting the iPad screen lock will immediately cut the live stream for all viewers. Keep the screen on and stay in Mevo Studio for the entire game.</div>
@@ -1179,5 +1195,6 @@
   </div>
 
 </div>
+
 </body>
 </html>
